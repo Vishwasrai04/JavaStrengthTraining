@@ -1,0 +1,35 @@
+1.Functional Interface (Include default & static method)
+2.Lambda Expression
+3.Stream
+4.CompletableFuture
+5.Java DateTime API
+
+What is stream in java 8;
+A stream is a sequence of object that supports various methods which can be pipelined to produce the designed result.
+
+The Features of Java stream are-
+1.A stream is not a data structure instead it takes input from the collections, Arrays or i/o channels.
+2.Stream don't change the original data structure , they only provide result as per pipelined methods.
+
+Few stream method i have used
+1.filter
+2.forEach
+3.sorted
+4.map
+5.flatMap
+6.reduce
+7.groupingBy
+8.Count
+9.collect
+
+What is CompletableFuture
+completableFuture is used for asynchronous programming in java.Asynchronous programming
+is a means of writting non-blocking code by running a task on a separate thread than the
+main application thread and notifying the main thread about its progress, completion or failure.
+
+why CompletableFuture why not Future?
+Because future object:
+1.It cannot be manually completed.
+2.Multiple Futures cannot be chained together
+3.You can not combine multiple Futures together
+4.No Exception Handling.
