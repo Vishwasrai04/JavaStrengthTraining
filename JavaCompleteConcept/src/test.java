@@ -3,8 +3,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public  class test {
-
+public class   test {
 
     public static void main(String args[]) {
        String input = "t2e1st This i1s f1irs1t";

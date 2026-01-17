@@ -1,120 +1,108 @@
 package JAVA8;
-// lambda functions can only be used with interfaces
+
 public class lambdasAndAnonymousClass {
 
-    public static void main(String args[]){
+    public static void main(String[] args) {
 
-        // Anonymous class
-        fiface fifaceObj = new fiface() {
+        /** --- 1. ANONYMOUS CLASS --- */
+        // Works for both Interfaces and Abstract Classes.
+        // It creates a nameless class file at compile time.
+        SimpleInterface obj1 = new SimpleInterface() {
             @Override
-            public int itm(int x) {
-                return 0;
+            public int calculate(int x) {
+                return x + 10;
             }
         };
 
-        // This is lambda expression
-        fiface fifaceobj2 = (x)->{return x*x;};
+        /** --- 2. LAMBDA EXPRESSION --- */
+        // Only works for FUNCTIONAL INTERFACES (1 abstract method).
+        // Cleaner syntax, no extra .class file created.
+        SimpleInterface lambdaObj = (x) -> x * x;
 
-
-        abs absObj = new abs() {
+        /* --- 3. ABSTRACT CLASS ANONYMOUS IMPLEMENTATION --- */
+        BaseAbstract absObj = new BaseAbstract() {
             @Override
-            public int sbsm(int x, String y) {
-                return 0;
+            public int process(int x, String y) {
+                System.out.println("Processing: " + y);
+                return x * 2;
             }
         };
 
-        siface siface = ()->{
-            System.out.println("Interface related to this" +
-                    " expression have one public method and others static, private, default ");
+
+        /* --- 4. NO-ARGUMENT LAMBDA --- */
+        AdvancedInterface advLambda = () -> {
+            System.out.println("Rule: Lambdas work if there is exactly one 'abstract' method.");
         };
     }
 }
 
 
-/** .............Given below is just a normal functional interface................. */
-interface fiface{
-    int x = 0;
-    //by default all the methods of interface are public
-    int itm(int x);
+/**
+ * RULE: Functional Interfaces can have:
+ * 1. Exactly ONE abstract method.
+ * 2. Multiple Static, Private, and Default methods.
+ */
+@FunctionalInterface
+interface SimpleInterface {
+    int MAX_LIMIT = 100; // Automatically: public static final
 
+    int calculate(int x); // Automatically: public abstract
+
+    static void utility() {
+        System.out.println("Static methods don't need an instance.");
+    }
 }
 
-/**...............This is the interface face with some fact...........................*/
+interface AdvancedInterface {
+    String DEFAULT_STATUS = "ACTIVE"; // Initialization is COMPULSORY
 
-interface siface{
-    //In interface You can not declare any variable as private and also initialization is compulsory
-    String st = null;
-    public void nmt();
+    void runTask(); // The single abstract method
 
-
-    //protected int pit(); protected methods are not allowed inside interface
-    // static and private and default method in interface should have body
-    static String stm() {
-        return null;
+    // PRIVATE: Used for internal logic shared between default methods
+    private String logHelper() {
+        return "[LOG INFO]: ";
     }
-    private String ptm(){
-        return "ptm";
-    }
-    default int pit() {
-        // Default method in interface is used to access private methode indirectly as they can be inherited by child.
-        System.out.println("Inside default method");
-        ptm();
-        System.out.println(ptm());
+
+    // DEFAULT: Allows adding new methods to interfaces without breaking implementing classes
+    default int performAction() {
+        System.out.println(logHelper() + "Inside default method");
         return 0;
     }
-}
-abstract class abs{
 
-    // you have to write abstract in order to make method abstract
-    abstract public int sbsm(int x, String y);
-    public static void absm1(){}
-    final static void absm2(){}
-
-    private static final void absm3(){}
-    // can not make variable to be abstract
-    int var;
-
+    // STATIC: Cannot be inherited; called via AdvancedInterface.status()
+    static String status() {
+        return "Static Status";
+    }
 }
 
-class lam extends abs{
-  public static void lamm(){
-      System.out.println("This is a normal class");
-  }
+abstract class BaseAbstract {
+    int instanceVar; // Unlike interfaces, variables can be non-static/non-final
 
+    // You MUST use the 'abstract' keyword for methods without a body
+    abstract public int process(int x, String y);
+
+    public static void staticMethod() { }
+
+    final void finalMethod() {
+        System.out.println("Cannot be overridden by children");
+    }
+}
+
+class Implementation extends BaseAbstract implements AdvancedInterface {
     @Override
-    public int sbsm(int x, String y) {
-        return 0;
-    }
-    abs abs = new lam();
-}
-
-
-/**...............Here are the classes implementing interfaces...........................*/
-
-class imp_fiface implements fiface{
-
-    @Override
-    public int itm(int x) {
-        return 0;
-    }
-}
-class imp_siface implements siface{
-    public static void main(String args[]){
-        imp_siface obj = new imp_siface();
-        siface siface = new imp_siface();
-        System.out.println( obj.pit());
-        //Note that obj of this class we can call method of parent interface and that method can call private method
-        // inside that interface.
+    public int process(int x, String y) {
+        return x;
     }
 
     @Override
-    public void nmt() {
-
+    public void runTask() {
+        System.out.println("Task Running");
     }
 
-    @Override//This method  implementation of a default method and there fore it is optional
-    public int pit() {
-        return siface.super.pit();
+    // Overriding a default method is OPTIONAL
+    @Override
+    public int performAction() {
+        // You can call the parent interface's default method like this:
+        return AdvancedInterface.super.performAction();
     }
 }
-

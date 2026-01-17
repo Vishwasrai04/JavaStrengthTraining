@@ -1,0 +1,165 @@
+
+                                                    Static vs non Static
+
+ 1. Static method and variable belongs to class so can not be inheriteted or called from another class with object it has to called with class name.
+ 2. One static method can call another directly if belongs to the same class
+ 3. we can only initialize a static final attribute directly or in STATIC initialization block.
+
+
+                                                  Encapsulation
+
+ 1.  A class is called encapsulated if, 1. All the data Members are private.  2. Getter and Settes are their for all the data members.
+
+
+                                                  Upcasting and Downcasting
+
+
+                                                  Constructor
+
+ 1. Return type always Void and it cannot be static.
+ 2. If you do not make any constructor then compiler will craete a default constructor but if you create even one constructor then complier will not craete defalut constructor.
+ 3. while copying avriable of one object into another through paramterize constructor your object should be of same type.
+ 4. When object of child class is created then first constructor of base class is created is invoke then constructor of child class.
+
+
+                                                 "This" keyword
+
+this refers to the current object of the class.
+It is used inside non-static methods and constructors to access instance variables and methods.
+
+this is used to resolve naming conflicts and for constructor chaining.
+It differentiates instance variables from local variables and allows calling another constructor using this().
+
+this cannot be used in static context.
+Because static members belong to the class, not to any specific object.
+
+                                                "super" keyword
+
+1.super refers to the immediate parent class object.
+It is used to access parent class variables and methods.
+
+2.super() is used to call the parent class constructor both default and prametrized.
+It must be the first statement inside the child class constructor.
+
+3.super cannot be used in static context.
+Because inheritance works at the object level, not class level.
+
+4."This" and "supper" can not be used simultaneously. If "this exsist in our constructor then JVM won't place "super" keyword.
+
+5.this() and super() must be the first statement in a constructor.
+
+6. By defalut super() is present in first like of child constructor.
+
+                                                "final" keyword
+
+1. A final  cannot be reassigned, overridden, inherited.
+2. We can not change the final atributes values through constructor also.And if we are initializing final attribute in constructor then we will
+      have to initialize thefinal attribute in each constructor of that class, alues may be different.
+3. We cannot initialize static final in constructor, instance block.
+
+
+
+                                              Initialization Block
+
+1. This is the order of execution
+ 1. Static variable
+ 2. Static block
+ 3. Instance block
+
+2. After JAVA 8 static variable are stored in HEAP
+
+3. Class will be loaded in memory only once and static initialization block will be start execution
+
+
+
+                                               Order of execution in java
+
+Java execution happens in 4 major phases:
+
+1.Class Loading
+2.Object Creation
+3.Constructor Chaining
+4.Method Execution
+
+class Loading
+Order of execution  = static variables -> static methods -> static initialization blocks  {Top to Bottom if more then one present}
+                      Parent static → Child static
+
+Object Creation
+Order of Execution =    Instance variables -> Instance Initialization Blocks (IIB) -> Constructors
+
+
+
+                                                Method Overridding
+
+
+
+1. In case of method overriding  super class method's retuen type and sub class datatype should be same if its premetive data type.
+
+
+
+
+                                               Access Specifiers
+
+1. order of security = Private(same class) -> default(same package) -> protected(other packages) ->public(whole project)
+2. order of inhertance = private(private, default, protected, public)
+                      Defalut(default, protected, public)
+                      protected(protected, public)
+                      public(public)
+3. Static method should be present in both child and parent
+
+
+
+
+                                 1️⃣ When does a class load in Java?
+
+❌ Class is NOT loaded at compile time
+Compilation only checks syntax and creates .class files.
+✅ Class is loaded at runtime, when it is first actively used
+A class is loaded only if one of these happens:
+1. You create an object of that class → new Child()
+2. You access a static variable → Child.x
+3. You call a static method → Child.staticMethod()
+4. A subclass is loaded of above reasons → parent loads first automatically
+5. Using Class.forName("ClassName")
+
+⚠️ Important
+If a child class is NEVER used, it is NEVER loaded.
+
+When you click the "Run" button in your IDE, you aren't just continuing the previous program. You are terminating the
+old "Universe" (JVM Process) and starting a brand-new one.
+
+When I say a class is "loaded once and frozen," that applies to a single, continuous run of the JVM.Their for static block only runs once and insatnce block every time object is created
+
+3. What if you want to change it without restarting? (HotSwap)
+There is a feature in modern IDEs called "HotSwap" or "Hot Code
+Replace." If you are debugging and you add a line of code, the IDE tries to "patch" the running JVM.
+
+
+
+                                 Abstract Method
+
+1. Abstract class do have constructors which can be used for constructor chaining.
+2. we can not create object of abstract class, neither use this keyword with "constructor", "Attributes", "Defined methods"
+3. can not use static keyword with abstract
+4. we can not achieve 100% abstraction and neither multiple inheritance through abstract key word that's why we bring the concept of INTERFACE.
+
+
+                               Interface
+1. We can use default, private, static method inside interface its just we have to define their body.
+2. Interface is a collection of public static final data members and public abstract methods.
+3. Static final of of an interface can only be initialized at the time of declaration while static final of a class
+can be initialized in static initialization block as well as at the time of declaration.
+4. In interface You can not declare any variable as private and also initialization is compulsory
+
+ //protected int pit(); protected methods are not allowed inside interface
+    // static and private and default method in interface should have body
+
+
+
+
+
+
+
+
+

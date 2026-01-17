@@ -31,7 +31,6 @@ import java.util.List;
 public class GarbageCollection {
     public static GarbageCollection static_garbageCollection = new GarbageCollection();
 
-
     public static void main(String[] args) throws IOException {
 
 //  collection framework object
@@ -49,7 +48,6 @@ public class GarbageCollection {
         // using object
         static_garbageCollection = null; // Release the memory occupied by the object
         garbageCollection = null;
-
 
 //  Using try with resources, try(resources){}catch(){}
         try (BufferedReader reader = new BufferedReader(new FileReader("file.txt"));
@@ -80,7 +78,6 @@ public class GarbageCollection {
         }
     }
 }
-
 
 /**
  What are AutoCloseable interfaces and give examples:

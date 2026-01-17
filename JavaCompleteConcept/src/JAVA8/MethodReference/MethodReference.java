@@ -26,10 +26,8 @@ import java.util.Comparator;
  *
  * Example: ArrayList::new is a reference to the constructor of the ArrayList class.
  * */
+
 public class MethodReference {
-
-
-
 
     public static void main(String args[]){
 

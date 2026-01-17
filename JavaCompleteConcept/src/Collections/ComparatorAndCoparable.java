@@ -19,11 +19,10 @@ public class ComparatorAndCoparable {
 
       list.add(p1); list.add(p2);  list.add(p3);
       list.add(p4); list.add(p5);
-      /**Apply simple comparable, you can extend your class(person) and change compare to methode according to you*/
+      /** Apply simple comparable, you can extend your class(person) and change compare to methode according to you*/
       Collections.sort(list);
 
-
-      /** Now comparator, Also comparator provides various in built methods  to use*/
+      /** Now comparator, Also comparator provides various in built methods to use*/
       /** based on id*/
       Comparator<Person> idComparatorInt = Comparator.comparingInt(p -> p.id);
       Collections.sort(list, idComparatorInt);
@@ -38,12 +37,7 @@ public class ComparatorAndCoparable {
       helper help = new helper();
       Collections.sort(list, help);
       System.out.println(list.stream().map(val->val.id).collect(Collectors.toList()));
-
-
-
-
   }
-
 
 }
 
@@ -51,16 +45,12 @@ class Person implements Comparable<Person> {
 
     int id;
     String name;
-
     String address;
-
     public Person(int id, String name, String address) {
         this.id = id;
         this.name = name;
         this.address = address;
     }
-
-
     @Override
     public int compareTo(Person o) {
  //        return this.name.compareTo(o.name);

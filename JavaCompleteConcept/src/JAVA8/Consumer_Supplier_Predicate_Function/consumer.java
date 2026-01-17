@@ -43,3 +43,5 @@ public class consumer {
 
 
 }
+
+// why and were consumer are used what specical application they provide
